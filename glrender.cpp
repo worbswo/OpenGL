@@ -1,6 +1,5 @@
 #include "glrender.h"
-#include "GLES3/gl3.h"
-#include "GLES3/gl3ext.h"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -97,6 +96,7 @@ GLuint LoadShaders(const char * vertex_file_path, const char * fragment_file_pat
 }
 
 void GLRender::init(){
+    loadModel.loadeFile("../groundstone-sphere/source/sphere.fbx");
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     programID = LoadShaders("Shader/vertextShader.vs", "Shader/fragmentShader.fs");
@@ -117,6 +117,8 @@ void GLRender::paint(){
     else{
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_STENCIL_TEST);
+
+
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glUseProgram(programID);

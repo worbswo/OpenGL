@@ -7,7 +7,9 @@ QT += qml quick
 SOURCES += \
         glrender.cpp \
         glwindow.cpp \
-        main.cpp
+        loadmodel.cpp \
+        main.cpp \
+        stb_image.c
 
 RESOURCES += qml.qrc
 
@@ -21,8 +23,10 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
+LIBS+= -lassimp
 HEADERS += \
     glrender.h \
     glwindow.h \
-    header.h
+    header.h \
+    loadmodel.h \
+    stb_image.h

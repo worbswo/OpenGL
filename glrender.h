@@ -5,6 +5,8 @@
 #include <QtQuick/qquickwindow.h>
 #include "header.h"
 #include <QDebug>
+#include "loadmodel.h"
+
 class GLRender : public QWindow, protected QOpenGLFunctions
 {
     Q_OBJECT
@@ -36,6 +38,7 @@ private:
     GLuint programID;
     GLuint vertexbuffer;
     bool initFlag;
+    LoadModel loadModel;
 };
 
 #endif // GLRENDER_H
