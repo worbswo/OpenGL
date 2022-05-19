@@ -175,12 +175,11 @@ void LoadModel::processNode(aiNode *node, const aiScene *scene) {
 
 
 void LoadModel::loadeFile(string filePath){
-    pScene = impoter.ReadFile(filePath,aiProcess_Triangulate|aiProcess_FlipUVs);
+    pScene = impoter.ReadFile(filePath,aiProcess_Triangulate| aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
     if(!pScene || pScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !pScene->mRootNode) {
         cout << "ERROR::ASSIMP::" << impoter.GetErrorString() << endl;
         return;
     }
     directory = filePath.substr(0, filePath.find_last_of('/'));
     processNode(pScene->mRootNode, pScene);
-
 }
