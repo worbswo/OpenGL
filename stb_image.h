@@ -1,5 +1,3 @@
-#ifndef STB_IMAGE_H
-#define STB_IMAGE_H
 ////   begin header file  ////////////////////////////////////////////////////
 //
 // Limitations:
@@ -261,5 +259,3 @@ extern void stbi_install_YCbCr_to_RGB(stbi_YCbCr_to_RGB_run func);
 //
 //
 ////   end header file   /////////////////////////////////////////////////////
-
-#endif // STB_IMAGE_H

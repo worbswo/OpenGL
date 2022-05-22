@@ -24,10 +24,8 @@ void GLWindow::handleWindowChanged(QQuickWindow *win)
         connect(win, &QQuickWindow::sceneGraphInvalidated, this, &GLWindow::release, Qt::DirectConnection);
         win->setClearBeforeRendering(false);
         QSurfaceFormat glFormat;
-        glFormat.setVersion(3,2);
-        glFormat.setProfile(QSurfaceFormat::CoreProfile);
         /*I'm showing everything for context, but this is the key line*/
-        glFormat.setDepthBufferSize(8);
+        glFormat.setDepthBufferSize(24);
         glFormat.setAlphaBufferSize(8);
         glFormat.setRedBufferSize(8);
         glFormat.setGreenBufferSize(8);
@@ -53,9 +51,7 @@ void GLWindow::sync()
 
         /// paint glRender before the scene starts rendering
 
-        QMetaObject::invokeMethod(this, "setWindowSize", \
-                                  Q_ARG(QVariant, window()->size().width()),
-                                  Q_ARG(QVariant, window()->size().height()));
+
         glRender->setWindow(window());
         glRender->setViewportSize(window()->size() * window()->devicePixelRatio());
 
@@ -66,4 +62,26 @@ void GLWindow::sync()
 
 
 
+}
+void GLWindow::touchEvent(QTouchEvent *event)
+{
+  float radius,pitch,head;
+  int id = event->type();
+  float disX;
+  float disY;
+  float currX[4],currY[4];
+  float tmpX[4],tmpY[4];
+
+  int cnt = 0;
+  foreach(QTouchEvent::TouchPoint n,event->touchPoints()){
+      tmpX[cnt] =n.pos().x();
+      tmpY[cnt] =n.pos().y();
+
+        glRender->setTouch(n.pos().x(),n.pos().y());
+    currX[cnt] = n.pos().x();
+    currY[cnt] = n.pos().y();
+
+    cnt ++;
+  }
+    qDebug()<<"sss";
 }

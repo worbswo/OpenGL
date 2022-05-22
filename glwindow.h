@@ -2,6 +2,9 @@
 #define GLWINDOW_H
 #include "header.h"
 #include "glrender.h"
+#include <QTouchEvent>
+
+
 class GLWindow : public QQuickItem
 {
     Q_OBJECT
@@ -11,6 +14,9 @@ public:
 public slots:
     void sync();
     void release();
+    void touchEvent(QTouchEvent *event) override;
+
+
 
 private slots:
     void handleWindowChanged(QQuickWindow *win);

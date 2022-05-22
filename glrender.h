@@ -5,8 +5,9 @@
 #include <QtQuick/qquickwindow.h>
 #include "header.h"
 #include <QDebug>
-#include "loadmodel.h"
-
+#include "model.h"
+#include "camera.h"
+#include "shader.h"
 class GLRender : public QWindow, protected QOpenGLFunctions
 {
     Q_OBJECT
@@ -25,6 +26,8 @@ public:
     void render();
     QSize getWindowSize();
     void init();
+    void meshBuild();
+    void setTouch(float x,float y);
 public slots:
     void paint();
 
@@ -38,7 +41,20 @@ private:
     GLuint programID;
     GLuint vertexbuffer;
     bool initFlag;
-    LoadModel loadModel;
+    Model model;
+    Shader shader;
+    Camera camera;
+    vector<unsigned int> VBO, EBO;
+    vector<unsigned int> VAO;
+    vector<Mesh> meshes;
+    GLuint attr[NUM_ATTR_LOC];
+    GLuint uniform[NUM_UNIFORM_LOC];
+    unsigned int textureID;
+    float lastX;
+    float lastY;
+    bool firstMouse = true;
+
+
 };
 
 #endif // GLRENDER_H

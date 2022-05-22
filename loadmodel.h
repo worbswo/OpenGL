@@ -22,6 +22,7 @@ public:
     vector<Mesh> meshes;
     vector<Texture>textures_loaded;
     string directory;
+    vector<Mesh> getMesh();
 
 };
 

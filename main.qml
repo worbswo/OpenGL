@@ -4,8 +4,8 @@ import OpenGLUnderQML 1.0
 
 
 GLWindow {
-    width: 640
-    height: 480
+    width: 1280
+    height: 720
     visible: true
     antialiasing:true
     SequentialAnimation on gw {
@@ -13,14 +13,12 @@ GLWindow {
         loops: Animation.Infinite
         running: true
     }
-    function setWindowSize(displayWidth, displayHeight) {
-            x = 0
-            y = 0
-            width = displayWidth
-            height = displayHeight
-            console.log(width, "x", height)
 
-        }
 
+    MouseArea {
+               id: mouseArea_full_area
+               anchors.fill: parent
+
+           }
 
 }

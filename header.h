@@ -10,8 +10,23 @@
 #include "GLES3/gl3.h"
 #include "GLES3/gl3ext.h"
 #include "glm/glm.hpp"
-#include "stb_image.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <stdio.h>
 using namespace std;
+enum{
+    ATTR_LOC_POSITION,
+    ATTR_LOC_TEXCOORD,
+    ATTR_LOC_NORMAL,
+    ATTR_LOC_TANGENT,
+    ATTR_LOC_BITANGENT,
+    NUM_ATTR_LOC
+};
+enum{
+    UNIFORM_LOC_MODEL,
+    UNIFORM_LOC_PROJECTION,
+    UNIFORM_LOC_VIEW,
+    NUM_UNIFORM_LOC
+};
 #define AUTO_PROPERTY(TYPE, NAME) \
     Q_PROPERTY(TYPE NAME READ NAME WRITE NAME NOTIFY NAME ## Changed ) \
     public: \
@@ -21,22 +36,5 @@ using namespace std;
     private: \
        TYPE a_ ## NAME;
 
-struct Vertex{
- glm::vec3 position;
- glm::vec3 normal;
- glm::vec2 texcoords;
- glm::vec3 tangent;
- glm::vec3 biTangent;
-};
-struct Texture{
-    unsigned int id;
-    string type;
-    string path;
-};
 
-struct Mesh{
-    vector<Vertex> verties;
-    vector<Texture> textures;
-    vector<unsigned int>     indcies;
-};
 #endif // HEADER_H

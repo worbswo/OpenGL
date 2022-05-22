@@ -171,6 +171,7 @@ void LoadModel::processNode(aiNode *node, const aiScene *scene) {
     for(unsigned int i = 0; i < node->mNumChildren; i++) {
         processNode(node->mChildren[i], scene);
     }
+
 }
 
 
@@ -182,4 +183,8 @@ void LoadModel::loadeFile(string filePath){
     }
     directory = filePath.substr(0, filePath.find_last_of('/'));
     processNode(pScene->mRootNode, pScene);
+}
+
+vector<Mesh> LoadModel::getMesh(){
+    return meshes;
 }

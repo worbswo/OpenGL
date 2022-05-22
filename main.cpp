@@ -19,7 +19,10 @@ int main(int argc, char *argv[])
            view->setResizeMode(QQuickView::SizeRootObjectToView);
            view->setSource(QUrl("qrc:/main.qml"));
            QObject::connect(view->engine(), &QQmlEngine::quit, qGuiApp, &QCoreApplication::quit);
-           format.setSamples(8);
+           format.setSamples(16);
+           format.setDepthBufferSize(24);
+           format.setStencilBufferSize(24);
+
            view->setFormat(format);
            views.append(view);
            view->show();
