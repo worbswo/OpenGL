@@ -15,7 +15,6 @@ public:
 public slots:
     void sync();
     void release();
-    void touchEvent(QTouchEvent *event) override;
 
 
 

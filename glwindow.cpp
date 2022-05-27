@@ -63,28 +63,7 @@ void GLWindow::sync()
 
 
 }
-void GLWindow::touchEvent(QTouchEvent *event)
-{
-  float radius,pitch,head;
-  int id = event->type();
-  float disX;
-  float disY;
-  float currX[4],currY[4];
-  float tmpX[4],tmpY[4];
 
-  int cnt = 0;
-  foreach(QTouchEvent::TouchPoint n,event->touchPoints()){
-      tmpX[cnt] =n.pos().x();
-      tmpY[cnt] =n.pos().y();
-
-        glRender->setTouch(n.pos().x(),n.pos().y());
-    currX[cnt] = n.pos().x();
-    currY[cnt] = n.pos().y();
-
-    cnt ++;
-  }
-    qDebug()<<"sss";
-}
 
 void GLWindow::setShader(int index){
     glRender->setShader(index);

@@ -6,6 +6,7 @@ QT += qml quick
 
 SOURCES += \
         camera.cpp \
+        datamodel.cpp \
         glrender.cpp \
         glwindow.cpp \
         main.cpp \
@@ -29,6 +30,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 LIBS+= -lassimp -lglfw
 HEADERS += \
     camera.h \
+    datamodel.h \
     glrender.h \
     glwindow.h \
     header.h \

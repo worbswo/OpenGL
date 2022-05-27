@@ -8,13 +8,7 @@
 #include "model.h"
 #include "camera.h"
 #include "shader.h"
-enum{
-    PBR_SHADER=0,
-    PHONG_SHADER,
-    BLINN_PHONG_SHADER,
-    NUM_OF_SHADER
-
-};
+#include "datamodel.h"
 class GLRender : public QWindow, protected QOpenGLFunctions
 {
     Q_OBJECT
@@ -26,7 +20,6 @@ public:
 
     inline void setWindow(QQuickWindow *window) {
       m_window = window;
-      windowFlag = true;
     }
 
 
@@ -44,28 +37,13 @@ private:
     QQuickWindow *m_window;
     qreal dWidth;
     qreal dHeight;
-    bool windowFlag;
-    GLuint VertexArrayID;
-    GLuint programID;
-    GLuint vertexbuffer;
+    DataModel dataModel;
     bool initFlag;
     Model model;
-    Shader shader[NUM_OF_SHADER];
-    Shader lightShader;
-    Model lightmodel;
-
+    Shader shader;
     Camera camera;
-    vector<unsigned int> VBO, EBO;
-    vector<unsigned int> VAO;
-    vector<Mesh> meshes;
-    GLuint attr[NUM_ATTR_LOC];
-    GLuint uniform[NUM_UNIFORM_LOC];
-    unsigned int cubeVAO;
-    unsigned int cubeVBO;
-    unsigned int textureID;
     float lastX;
     float lastY;
-    bool firstMouse = true;
     float shiness;
     int selectShader;
 
