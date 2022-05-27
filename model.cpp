@@ -122,15 +122,16 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     // diffuse: texture_diffuseN
     // specular: texture_specularN
     // normal: texture_normalN
-
     // 1. diffuse maps
     vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
     textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+    vector<Texture> roughnessMaps = loadMaterialTextures(material, aiTextureType_UNKNOWN, "texture_roughness");
+    textures.insert(textures.end(), roughnessMaps.begin(), roughnessMaps.end());
     // 2. specular maps
     vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     // 3. normal maps
-    std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+    std::vector<Texture> normalMaps = loadMaterialTextures(material, aiTextureType_NORMALS, "texture_normal");
     textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
     // 4. height maps
 
@@ -208,7 +209,7 @@ unsigned int TextureFromFile(const char *path, const string &directory, bool gam
     }
     else
     {
-        std::cout << "Texture failed to load at path: " << path << std::endl;
+        std::cout << "Texture failed to load at path: " << filename << std::endl;
         stbi_image_free(data);
     }
 
