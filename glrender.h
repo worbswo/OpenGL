@@ -35,6 +35,7 @@ public:
     void init();
     void meshBuild();
     void setTouch(float x,float y);
+    void setShader(int index);
 public slots:
     void paint();
 

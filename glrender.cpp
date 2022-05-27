@@ -17,7 +17,7 @@ GLRender::GLRender()
 void GLRender::init(){
     camera = Camera(glm::vec3(0.0,0.0,3.0));
     shader[PBR_SHADER] = Shader("../Shader/pbrShader.vs","../Shader/pbrShader.fs");
-    shader[PHONG_SHADER] = Shader("../Shader/pbrShader.vs","../Shader/pbrShader.fs");
+    shader[PHONG_SHADER] = Shader("../Shader/phongShader.vs","../Shader/phongShader.fs");
     lightShader = Shader("../Shader/lightShader.vs","../Shader/ligthShader.fs");
     model = Model("../Model/rock/scene.gltf");
     lightmodel= Model("../Model/sphere/scene.gltf");
@@ -97,4 +97,8 @@ void GLRender::setTouch(float x, float y){
         lastY = ypos;
 
 
+}
+
+void GLRender::setShader(int index){
+    selectShader=index;
 }

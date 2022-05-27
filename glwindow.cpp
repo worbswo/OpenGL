@@ -85,3 +85,7 @@ void GLWindow::touchEvent(QTouchEvent *event)
   }
     qDebug()<<"sss";
 }
+
+void GLWindow::setShader(int index){
+    glRender->setShader(index);
+}

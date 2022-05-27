@@ -11,6 +11,7 @@ class GLWindow : public QQuickItem
     AUTO_PROPERTY(qreal,gw)
 public:
     GLWindow();
+    Q_INVOKABLE void setShader(int index);
 public slots:
     void sync();
     void release();
