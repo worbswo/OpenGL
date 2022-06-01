@@ -12,6 +12,10 @@ class GLWindow : public QQuickItem
 public:
     GLWindow();
     Q_INVOKABLE void setShader(int index);
+    Q_INVOKABLE void setShiness(float value);
+    Q_INVOKABLE void setModelScale(float value);
+    Q_INVOKABLE void setLightPositionZ(float value);
+    Q_INVOKABLE void setLightPositionXY(float valueX,float valueY);
 public slots:
     void sync();
     void release();

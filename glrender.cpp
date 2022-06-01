@@ -11,6 +11,9 @@ GLRender::GLRender()
     lastY=0;
     shiness=32;
     selectShader = PBR_SHADER;
+    modelScale=1.0f;
+    lightPos= glm::vec3(0.3f,0.0f,1.6f);
+
 }
 
 
@@ -41,9 +44,8 @@ void GLRender::paint(){
         int viewHeigth= m_window->height()*0.67;
         glViewport(0,offset_y,viewWidth,viewHeigth);
         shader.use();
-        glm::mat4 projection = glm::perspective(glm::radians(60.f), (float)m_window->width() / (float)m_window->height(), 0.1f, 1000.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(60.f), (float)m_window->width() / (float)(m_window->height()*0.67), 0.1f, 1000.0f);
         glm::mat4 view = camera.GetViewMatrix();
-        glm::vec3 lightPos(0.3f,0.0f,1.6f);
         shader.setMat4("projection", projection);
         shader.setMat4("view", view);
         shader.setVec3("lightPos",lightPos);
@@ -61,7 +63,7 @@ void GLRender::paint(){
         model = glm::rotate(model,glm::radians(90.f),glm::vec3(1.0f,0.0f,0.0f));
 
         model = glm::translate(model, glm::vec3(0.0f,0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));	// it's a bit too big for our scene, so scale it down
+        model = glm::scale(model, glm::vec3(modelScale, modelScale, modelScale));	// it's a bit too big for our scene, so scale it down
         shader.setMat4("model", model);
         shader.setVec3("viewPos",camera.Position);
         lastX+=0.3;
@@ -72,4 +74,18 @@ void GLRender::paint(){
 }
 void GLRender::setShader(int index){
     shader = dataModel.getShader(index);
+}
+void GLRender::setShiness(float value){
+    shiness=(int)value;
+}
+void GLRender::setModelScale(float value){
+    modelScale=value;
+}
+void GLRender::setLightPositionZ(float value){
+    lightPos.z+=value;
+}
+void GLRender::setLightPositionXY(float valueX,float valueY){
+    lightPos.x=valueX;
+    lightPos.y=-valueY;
+
 }

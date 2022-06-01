@@ -29,6 +29,10 @@ public:
     void meshBuild();
     void setTouch(float x,float y);
     void setShader(int index);
+    void setShiness(float value);
+    void setModelScale(float value);
+    void setLightPositionZ(float value);
+    void setLightPositionXY(float valueX,float valueY);
 public slots:
     void paint();
 
@@ -46,6 +50,8 @@ private:
     float lastY;
     float shiness;
     int selectShader;
+    float modelScale;
+    glm::vec3 lightPos;
 
 
 };

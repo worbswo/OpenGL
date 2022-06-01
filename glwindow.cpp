@@ -68,3 +68,24 @@ void GLWindow::sync()
 void GLWindow::setShader(int index){
     glRender->setShader(index);
 }
+void GLWindow::setShiness(float value){
+    if (glRender) {
+        glRender->setShiness(value);
+    }
+}
+void GLWindow::setModelScale(float value){
+    if(glRender){
+        glRender->setModelScale(value);
+    }
+}
+void GLWindow::setLightPositionZ(float value){
+    if(glRender){
+        glRender->setLightPositionZ(value);
+    }
+}
+
+void GLWindow::setLightPositionXY(float valueX, float valueY){
+    if(glRender){
+        glRender->setLightPositionXY(valueX,valueY);
+    }
+}
